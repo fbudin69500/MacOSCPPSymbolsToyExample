@@ -1,0 +1,19 @@
+Toy example to explore C++ symbol visibility on MacOS
+
+To use
+
+mkdir bin
+cd bin
+cmake -GNinja ..
+ninja
+
+nm -mo liblib.dylib |c++filt |grep typeinfo
+
+
+
+Output:
+liblib.dylib: 0000000000003108 (__DATA,__data) weak external typeinfo for MyExplicitClass<float>
+liblib.dylib: 0000000000003140 (__DATA,__data) weak external typeinfo for derived<float>
+liblib.dylib: 0000000000002ec0 (__TEXT,__const) weak external typeinfo name for MyExplicitClass<float>
+liblib.dylib: 0000000000002ee0 (__TEXT,__const) weak external typeinfo name for derived<float>
+
